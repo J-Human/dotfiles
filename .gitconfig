@@ -1,0 +1,22 @@
+[user]
+	name = J-Human
+	email = justinleeong@gmail.com
+	signingkey = 33739EB1DB4E17B2
+[core]
+	editor = code --wait
+	autocrlf = false
+	filemode = false
+[commit]
+	gpgsign = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[init]
+	defaultBranch = main
+[credential "https://github.com"]
+	username = J-Human
+	helper = store
+[pull]
+	rebase = true
