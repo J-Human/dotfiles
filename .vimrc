@@ -18,3 +18,4 @@ set noswapfile
 set spell spelllang=en_us
 set ft=unix
 set shell=/bin/zsh
+set re=0
