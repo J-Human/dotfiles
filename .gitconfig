@@ -19,3 +19,5 @@
 	username = J-Human
 [pull]
 	rebase = true
+[advice]
+	skippedCherryPicks = false
