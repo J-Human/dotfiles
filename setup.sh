@@ -29,11 +29,39 @@ if ! command -v brew &> /dev/null; then
 fi
 
 echo "Installing dependencies using Homebrew..."
-DEPENDENCIES=("git" "node" "pnpm")
+DEPENDENCIES=("clang-format" "cocoapods" "gcc" "git" "neovim" "node" "pnpm")
 for formula in $DEPENDENCIES; do
 	echo "Installing $formula"
 	brew install $formula
 done
+
+if [ $(uname) = "Darwin" ]; then
+	echo "Installing apps using Homebrew..."
+	APPS=(
+		"android-studio"
+		"battle-net"
+		"discord"
+		"fig"
+		"google-chrome"
+		"visual-studio-code"
+		"zoom"
+	)
+	for formula in $APPS; do
+		echo "Installing $formula"
+		brew install --cask $formula
+	done
+
+	echo "Installing various macOS system preferences..."
+	sudo nvram StartupMute=%00
+	defaults write com.apple.finder QuitMenuItem -bool true
+	defaults write com.apple.dt.Xcode "ShowBuildOperationDuration" -bool true
+	defaults write NSGlobalDomain "NSToolbarTitleViewRolloverDelay" -float "0.0"
+	defaults write NSGlobalDomain "AppleShowAllExtensions" -bool true
+	killall Finder || true
+	killall Xcode || true
+else
+	echo "Skipping installing apps, and system configuration on non-macOS system. Found $(uname)."
+fi
 
 echo "Using the new ZSH configuration..."
 source ~/.zshrc
