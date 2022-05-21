@@ -29,7 +29,7 @@ if ! command -v brew &> /dev/null; then
 fi
 
 echo "Installing dependencies using Homebrew..."
-DEPENDENCIES=("clang-format" "cocoapods" "gcc" "git" "neovim" "node" "pnpm")
+DEPENDENCIES=("clang-format" "gcc" "git" "neovim" "node" "pnpm", "python")
 for formula in $DEPENDENCIES; do
 	echo "Installing $formula"
 	brew install $formula
@@ -38,7 +38,6 @@ done
 if [ $(uname) = "Darwin" ]; then
 	echo "Installing apps using Homebrew..."
 	APPS=(
-		"android-studio"
 		"battle-net"
 		"discord"
 		"fig"
